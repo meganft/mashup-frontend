@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'pry'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 gem "figaro"
 gem "faraday"
 # gem 'therubyracer', platforms: :ruby
@@ -29,6 +29,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'simplecov'
+  gem 'database_cleaner'
+
 end
 
 gem 'rails_12factor', group: :production
