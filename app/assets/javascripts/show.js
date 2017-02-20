@@ -2,7 +2,6 @@
 //
 // $(document).ready(function(){
 //   var cohortId = window.location.pathname.split("/cohorts/")[1];
-//   debugger;
 //   var getOneCohort = function() {
 //     return $.ajax({
 //       url: API + '/api/v1/cohorts/' + cohortId,
