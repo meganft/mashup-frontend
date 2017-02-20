@@ -7,7 +7,7 @@ $(document).ready(function(){
       method: 'GET',
     }).done(function(data){
       for (var i = 0; i < data.length; i++) {
-        $('.cohorts').append('<p class="cohort">' + data[i].name + '</p>');
+        $('.cohorts').append('<p class="cohort">' '<%= link_to ' + data[i].name + '</p>');
       }
     }).fail(function(error){
       console.error(error);
