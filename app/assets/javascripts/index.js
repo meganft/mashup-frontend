@@ -7,7 +7,7 @@ $(document).ready(function(){
       method: 'GET',
     }).done(function(data){
       for (var i = 0; i < data.length; i++) {
-        $('.cohorts').append('<p class="cohort">' + data[i].name + '</p>');
+        $('.cohorts').append('<p>' + `<a href="/cohorts/${data[i].id}">${data[i].name}</a>` + '</p>');
       }
     }).fail(function(error){
       console.error(error);
