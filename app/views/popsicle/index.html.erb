@@ -24,7 +24,11 @@
         if (localStorage.students === undefined){
           localStorage.setItem("students", studentsArray);
           displayStudent();
-        } else {
+        } else if (localStorage.students.split(",").length < 6) {
+          localStorage.setItem("students", studentsArray);
+          displayStudent();
+        }
+        else {
           displayStudent();
         }
       }).fail(function(error){
