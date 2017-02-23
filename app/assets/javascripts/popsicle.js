@@ -1,19 +1,19 @@
 // var API = 'https://mashup-api.herokuapp.com';
 //
 // $(document).ready(function(){
-//   var cohortId = window.location.pathname.split("/cohorts/")[1];
-//   var getOneCohort = function() {
+//   var cohortId = window.location.pathname.split("/")[2];
+//   var getStudents = function() {
 //     return $.ajax({
-//       url: API + '/api/v1/cohorts/' + cohortId,
+//       url: API + '/api/v1/students?id=' + cohortId,
 //       method: 'GET',
 //     }).done(function(data){
 //       for (var i = 0; i < data.length; i++) {
-//         $('.cohort-show').append('<p class="cohort">' + data[i].name + '</p>');
+//         $('.popsicle').append('<p class="popsicle">' + data[i].name + '</p>');
 //       }
 //     }).fail(function(error){
 //       console.error(error);
 //     });
 //   };
 //
-//   getOneCohort();
+//   getStudents();
 // });
