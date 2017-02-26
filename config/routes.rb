@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'cohorts#index'
+
+
+  get '/custom', to: "custom#index"
 
   resources :cohorts, only: [:index, :show]
 
