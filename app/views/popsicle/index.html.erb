@@ -14,7 +14,7 @@
     var cohortId = window.location.pathname.split("/")[2];
     var getStudents = function() {
       return $.ajax({
-        url: API + '/api/v1/students?id=' + cohortId,
+        url: API + '/api/v1/cohort/students/' + cohortId,
         method: 'GET',
       }).done(function(data){
         studentsArray = [];

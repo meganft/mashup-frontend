@@ -16,7 +16,7 @@ $(document).ready(function(){
 
   var getProjects = function() {
     return $.ajax({
-      url: API + '/api/v1/projects?id=' + cohortId,
+      url: API + '/api/v1/cohort/projects/' + cohortId,
       method: 'GET',
     }).done(function(data){
       for (var i = 0; i < data.length; i++) {
