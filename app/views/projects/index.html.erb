@@ -1,9 +1,32 @@
-<%= javascript_include_tag 'project' %>
-
 <div class="container">
 <h1>Cohort Project Index Page </h1>
 
   <div class="projects">
   </div>
-  
+
+  <%= link_to "New Project", new_cohort_project_path(params[:cohort_id]) %>
+
 </div>
+
+<script>
+var API = 'https://mashup-api.herokuapp.com';
+
+$(document).ready(function(){
+  var cohortId = window.location.pathname.split("/")[2];
+
+  var getProjects = function() {
+    return $.ajax({
+      url: API + '/api/v1/cohort/projects/' + cohortId,
+      method: 'GET',
+    }).done(function(data){
+      for (var i = 0; i < data.length; i++) {
+        $('.projects').append('<p>' + `<a href="/cohorts/${cohortId}/projects/${data[i].id}">${data[i].name}</a>` + '</p>');
+      }
+    }).fail(function(error){
+      console.error(error);
+    });
+  };
+
+  getProjects();
+});
+</script>
