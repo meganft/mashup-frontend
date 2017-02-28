@@ -1,0 +1,33 @@
+<h1>Cohort Pairs View! </h1>
+
+  <div class="cohort-pairs">
+
+  </div>
+
+<script>
+var API = 'http://localhost:3000';
+
+$(document).ready(function(){
+  var cohortId = window.location.pathname.split("/")[2];
+
+  var getPairs = function() {
+    return $.ajax({
+      url: API + '/api/v1/cohort/groups?id=' + cohortId + '&size=2',
+      method: 'GET',
+    }).done(function(data){
+      for (var i = 0; i < data.length; i++) {
+        if (data[i][1]  === null){
+          debugger;
+          $('.cohort-pairs').append('<p>' + data[i][0].name + '</p>');
+        } else {
+          $('.cohort-pairs').append('<p>' + data[i][0].name +', ' + data[i][1].name + '</p>');
+        }
+      }
+    }).fail(function(error){
+      console.error(error);
+    });
+  };
+
+  getPairs();
+});
+</script>

@@ -4,10 +4,9 @@
   <div class="cohorts">
   </div>
 
-  <p><%= link_to "Lunch Roulette" %></p>
+  <p><%= link_to "Lunch Roulette", lunchroulette_index_path %></p>
   <p><%= link_to "Custom Mashup" %></p>
 </div>
-
 
 <script>
 var API = 'https://mashup-api.herokuapp.com';
@@ -15,7 +14,7 @@ var API = 'https://mashup-api.herokuapp.com';
 $(document).ready(function(){
   var getCohorts = function() {
     return $.ajax({
-      url: API + '/api/v1/cohorts',
+      url: API + '/api/v1/cohort/cohorts',
       method: 'GET',
     }).done(function(data){
       for (var i = 0; i < data.length; i++) {
