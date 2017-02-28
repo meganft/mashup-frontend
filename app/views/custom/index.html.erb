@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Custom Groups</h1>
+
+  <div class="cohorts">
+  </div>
+
+</div>
+
+<script>
+  var API = 'https://mashup-api.herokuapp.com';
+  var cohorts
+
+  $(document).ready(function(){
+    var getCohorts = function() {
+      return $.ajax({
+        url: API + '/api/v1/cohort/cohorts',
+        method: 'GET',
+      }).done(function(data){
+        cohorts = data
+      }).fail(function(error){
+        console.error(error);
+      });
+    };
+    console.log(getCohorts());
+  });
+</script>
