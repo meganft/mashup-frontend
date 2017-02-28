@@ -3,7 +3,7 @@
 
   <div class="cohort-show">
     <p><%= link_to "Popsicle", cohort_popsicle_index_path(params[:id]) %></p>
-    <p><%= link_to "Pairs" %></p>
+    <p><%= link_to "Pairs", cohort_pairs_path(params[:id])%></p>
     <p><%= link_to "New Project", new_cohort_project_path(params[:id]) %></p>
     <p><%= link_to "Projects", cohort_projects_path(params[:id]) %></p>
   </div>
