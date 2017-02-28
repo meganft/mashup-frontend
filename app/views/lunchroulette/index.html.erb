@@ -4,21 +4,22 @@
 
 </div>
 <script>
-var API = 'http://localhost:3000';
 
+var API = 'http://localhost:3000';
 $(document).ready(function(){
 
   var getLunchGroups = function() {
     return $.ajax({
-      url: API + '/api/v1/students/groups?size=4',
+      url: API + '/api/v1/students/group?size=4',
       method: 'GET',
     }).done(function(data){
       for (var i = 0; i < data.length; i++) {
         if (data[i][1]  === null){
-          debugger;
           $('.lunch-groups').append('<p>' + data[i][0].name + '</p>');
+        } else if (data[i][2] === null) {
+          $('.lunch-groups').append('<p>' + data[i][0].name +  data[i][1].name + '</p>');
         } else {
-          $('.lunch-groups').append('<p>' + data[i][0].name +', ' + data[i][1].name + '</p>');
+          $('.lunch-groups').append('<p>' + data[i][0].name +', ' + data[i][1].name +', ' + data[i][2].name +', ' + data[i][3].name + '</p>');
         }
       }
     }).fail(function(error){
