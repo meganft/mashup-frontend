@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'cohorts#index'
 
   resources :cohorts, only: [:index, :show]
+  resources :lunchroulette, only: [:index]
 
   resources :cohorts, only: :show do
     resources :popsicle, only: [:index]
