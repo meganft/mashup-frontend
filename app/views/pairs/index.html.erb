@@ -17,7 +17,7 @@ $(document).ready(function(){
     }).done(function(data){
       for (var i = 0; i < data.length; i++) {
         if (data[i][1]  === null){
-          debugger;
+          ;
           $('.cohort-pairs').append('<p>' + data[i][0].name + '</p>');
         } else {
           $('.cohort-pairs').append('<p>' + data[i][0].name +', ' + data[i][1].name + '</p>');

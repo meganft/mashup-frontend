@@ -5,11 +5,11 @@
   </div>
 
   <p><%= link_to "Lunch Roulette", lunchroulette_index_path %></p>
-  <p><%= link_to "Custom Mashup" %></p>
+  <p><%= link_to "Custom Mashup", custom_path %></p>
 </div>
 
 <script>
-var API = 'https://mashup-api.herokuapp.com';
+var API = 'http://localhost:3000';
 
 $(document).ready(function(){
   var getCohorts = function() {
@@ -25,6 +25,6 @@ $(document).ready(function(){
     });
   };
   getCohorts();
-
+  ;
 });
 </script>
