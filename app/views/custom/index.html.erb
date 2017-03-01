@@ -1,26 +1,116 @@
 <div class="container">
   <h1>Custom Groups</h1>
-
   <div class="cohorts">
+    <h3>Cohorts</h3>
+
+  </div>
+  <h4>Group size:</h4>
+  <input type="text" id="group-size">
+  <input type="submit" onClick="getStudents('#group-size')">
+
+  <h4>Number of groups:</h4>
+  <input type="text" id="number-of-groups" disabled="true">
+
+  <input type="submit" onClick="getStudents('#number-of-groups')" disabled="">
+  <p>COMING SOON!</p>
+
+
+  <div id="group-div">
   </div>
 
 </div>
 
 <script>
-  var API = 'https://mashup-api.herokuapp.com';
-  var cohorts
+var API = 'http://localhost:3000';
 
-  $(document).ready(function(){
-    var getCohorts = function() {
-      return $.ajax({
-        url: API + '/api/v1/cohort/cohorts',
-        method: 'GET',
-      }).done(function(data){
-        cohorts = data
-      }).fail(function(error){
-        console.error(error);
-      });
-    };
-    console.log(getCohorts());
+$(document).ready(function(){
+  var getCohorts = function() {
+    return $.ajax({
+      url: API + '/api/v1/cohort/cohorts',
+      method: 'GET',
+    }).done(function(data){
+      for (var i = 0; i < data.length; i++) {
+        $('.cohorts').append("   " + ` <input type="checkbox" value="${data[i].id}">` + data[i].name);
+      }
+    }).fail(function(error){
+      console.error(error);
+    });
+  };
+  getCohorts();
+});
+
+
+$("#group-size").click(function(){
+  $("#group-size").prop("disabled", false)
+  $("#number-of-groups").prop("disabled", true)
+})
+$("#number-of-groups").click(function(){
+  $("#number-of-groups").prop("disabled", false)
+  $("#group-size").prop("disabled", true)
+})
+var getStudents = function(groupType) {
+  return $.ajax({
+    url: API + '/api/v1/students/active_students',
+    method: 'GET',
+  }).done(function(data){
+      makeGroups(data, groupType)
+  }).fail(function(error){
+    console.error(error);
   });
+};
+
+function  makeGroups(students, groupType){
+  var checkboxes = $(":checked")
+  var cohorts = []
+  for (var i = 0; i < checkboxes.length; i++) {
+    cohorts.push(checkboxes[i].value);
+  }
+  var includedStudents =  []
+  for (var i = 0; i < students.length; i++) {
+    for (var j = 0; j < cohorts.length; j++) {
+      if (cohorts[j] == students[i].cohort_id) includedStudents.push(students[i].name)
+    }
+  }
+
+  var count = $(groupType).val()
+  var groups = []
+
+  if (groupType === '#group-size') {
+    groups = _.chunk(includedStudents, count)
+
+  } else {
+    // var count = parseInt(count)
+    // var counter = count
+    // var group = []
+    // var groups = []
+    // for (var i = 0; i < count; i++) {
+    //   groups.push(group)
+    // }
+    // while (includedStudents.length > 0) {
+    //
+    //   var tempGroup = groups[counter%count]
+    //   tempGroup.push(includedStudents.shift())
+    //   counter = counter + 1
+    // }
+
+  }
+  $("#group-div").append("<h3> Your Groups Are: </h3>")
+
+  for (var i = 0; i < groups.length; i++) {
+    for (var j = 0; j < groups[i].length; j++) {
+      if (j == (groups[i].length - 1)) {
+        $("#group-div").append(groups[i][j] + " ")
+
+      }else {
+        $("#group-div").append(groups[i][j] + ", ")
+      }
+    }
+    $("#group-div").append("<br>")
+    $("#group-div").append("<br>")
+
+  }
+}
+
+
+
 </script>
